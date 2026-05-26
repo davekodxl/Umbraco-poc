@@ -3,11 +3,6 @@ using Microsoft.AspNetCore.DataProtection;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-builder.CreateUmbracoBuilder()
-    .AddBackOffice()
-    .AddWebsite()
-    .AddComposers()
-    .Build();
 
 builder.Services.AddDataProtection()
     .PersistKeysToFileSystem(
@@ -15,6 +10,13 @@ builder.Services.AddDataProtection()
             Path.Combine(builder.Environment.ContentRootPath, 
                          "App_Data", "DataProtection-Keys")))
     .SetApplicationName("itweb.kodxl.com");
+
+
+builder.CreateUmbracoBuilder()
+    .AddBackOffice()
+    .AddWebsite()
+    .AddComposers()
+    .Build();
 
 WebApplication app = builder.Build();
 
