@@ -11,7 +11,9 @@ builder.CreateUmbracoBuilder()
 
 builder.Services.AddDataProtection()
     .PersistKeysToFileSystem(
-        new DirectoryInfo(@"D:\INETPUB\VHOSTS\kodxl.com\itweb.kodxl.com\App_Data\DataProtection-Keys"))
+        new DirectoryInfo(
+            Path.Combine(builder.Environment.ContentRootPath, 
+                         "App_Data", "DataProtection-Keys")))
     .SetApplicationName("itweb.kodxl.com");
 
 WebApplication app = builder.Build();
